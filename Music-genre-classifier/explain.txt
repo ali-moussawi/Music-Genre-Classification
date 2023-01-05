@@ -1,0 +1,46 @@
+1. basically it takes .wav files as input , implements different ML Models.
+shows results by each.
+2. when giving input, it cuts the audio into 30 seconds slot after removing select parts.
+   it extracts differenet audio features like MFCC.
+3. the only problem with this program is that it takes a little time to predict.
+	it has to extract over 900 features.
+
+lts check the code:
+1> in model.py inputs the GTZAN DATASET. splits the data.
+     Scales then using scalewr from sklearn.
+
+then we dump the trained set and sacled feature in PICKLE to imply on the 
+input audio from user while testing it.
+then we remove main 30 features using permutation importances from 
+ELIS library to get the best features and improve speed and accurancy.
+
+now we train different models and dump them into pickle files.
+
+Pickle is a useful Python tool that allows you to save your ML models,
+ to minimise lengthy re-training and allow you to share, commit,
+ and re-load pre-trained machine learning models. 
+Most data scientists working in
+ML will use Pickle or Joblib to save their ML model for future use.
+(no need to train them each time on same data).
+the trained weights will be used in APP.PY 
+
+2> Now we use flask in App.py to link it to the forntend and for the testing
+user input.
+we save the Audio input using librosa. split it into 10 parts (numpy array split).
+this is doe after removing silent spots using lebrosa.Effects.trim.
+
+   Now extract same 30 most important features for all 10 parts of the 
+30 seconds audio.
+
+kl shi labl l testing input data was extracting features. 
+then we load the PICKLE files of our models.
+and then we will test the input data row by row for each 10.
+we would then find the max  detections .
+like out of 10 if 6 are dico then music is disco.
+
+the output is saved in a list and sent to index.html.
+
+we run the Algo and Final Results Lists in a for loop of a table header.
+
+
+
